@@ -1,3 +1,25 @@
+/* 
+    ---------- Couple of things to note --------------
+    1. Box-sizing property
+
+    border-box : total space includes border and padding
+        Eg: height : 40px, width: 40px, border: 1px 
+            here, border is included which reduces the content size by 1px on all sides though the total space is 40px X 40px 
+
+    content-box:  does not include the border in the total width/height
+        Eg: height : 40px, width: 40px, border: 1px
+            here, border is not included, which increments the total size of an element by 1px meaning the total space is 42px X 42px.
+    
+    Below, based on box-sizing property for #container, the sizing of the children divs need to be calculated differently. 
+
+    2. Height & Width properties
+
+    viewport width and viewport height are relative to screen width and screen height. If your laptop screen is not square, using same number for vw and vh will not make it square.
+        Eg: height: 74vh, width: 74vw
+            here, vh and vw is converted to px value by multiplying with screensize(1920 by 1080) and hence, the size is not a square.
+
+    however, using min(--vw, --vh) does the job. It picks the smaller of vw or vh meaning, if viewport is wider, height is chosen and if viewport is taller, width is chosen, making the div perfect square.
+*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,17 +35,19 @@ h1 {
 
 #container {
     display: flex;
+    flex-wrap: wrap;
     margin: 10px auto;
     background-color: bisque;
+    box-sizing: content-box;
     border: 1px solid red;
-    height: 74vh;
-    width: 74vw;
+    height: min(74vw, 74vh);
+    width: min(74vw, 74vh);
 }
 
 .grids {
-    height: 4.625vh;
-    width: 4.625vw;
+    height: min(4.625vw, 4.625vh);
+    width:  min(4.625vw, 4.625vh);
+    border: 0.1px solid rgba(80, 80, 107, 0.055);
     flex-shrink: 0;
-    background-color: aliceblue;
-    border: 0.5px solid white;
+    background-color: rgb(190, 221, 248);
 }
