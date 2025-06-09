@@ -9,7 +9,7 @@ for (let i = 0; i < (gridSize * gridSize); i++) {
 // Reference to the above created grids as nodelist
 const grids = document.querySelectorAll(".grids");
 
-// Upon mouseover, each grid changes its bg color
+// Upon mouse hover, each grid changes its bg color
 grids.forEach(grid => {
     grid.addEventListener("mouseover", () => {
         grid.style.backgroundColor = "blue";
