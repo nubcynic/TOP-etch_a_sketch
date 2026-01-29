@@ -5,55 +5,57 @@ gridBtn.textContent = "Choose Grid Size";                    // add text
 gridBtn.classList.add("btn");                           // add class
 container.parentNode.insertBefore(gridBtn, container);  // insert gridBtn before container
 
+let currentGridSize = 16;    // default or initial grid size
+
+changeGrid(currentGridSize);    // call the function that changes the grid size
+
+// Check validity of the grid size
+function isValidGridSize(size) {
+    return !isNaN(size) && size >=12 && size <= 64; // returns true if the condition meet
+
+};
+
+// function that runs when btn is clicked
+
 gridBtn.addEventListener("click", () => {
-    gridBtn.classList.toggle("btnClick");
-    const gridSize = Number(prompt(`Enter your preferred grid between 8 and 100 :`));
-    if (isNaN(gridSize) || gridSize < 8 || gridSize > 100 ) {
-        alert("Invalid input. Enter between 8 and 100");
+    gridBtn.classList.toggle("btnClick");    // when clicked, run .btnClick CSS rule
+    const newGridSize = Number(prompt(`Enter your preferred grid between 12 and 64 :`));    // popup
+    if (isValidGridSize(newGridSize)) {     // if condition that runs function
+        currentGridSize = newGridSize;     // placeholder for grid size
+        container.innerHTML = "";    // this clears previous grid str.
+        changeGrid(currentGridSize);    // function call that changes grid str.
+
     } else {
-        // changeHeightWidth(gridSize);
-        changeGrid(gridSize);
+        alert("Invalid input. Enter between 12 and 64");    // runs if prompt is incorrect
     };
 });
 
-// function changeHeightWidth(gridSize=16) {
-//     for (let i = 0; i < styleSheet.cssRules.length; i++) {
-//         if (styleSheet.cssRules[i].selectorText === ".grids") {
-//             let newHeight = `${min(74/gridSize + "vw", 74/gridSize + "vh")}`;
-//             let newWidth =  `${min(74/gridSize + "vw", 74/gridSize + "vh")}`;
-//             styleSheet.cssRules[i].style.height = newHeight;
-//             styleSheet.cssRules[i].style.width = newWidth;
-//         };
-//     }
-// }
-
-function changeGrid(gridSize=16) {
-    while(container.firstChild) {
-        container.removeChild(container.firstChild);
-    };
-    for (let i = 0; i < (gridSize * gridSize); i++) {
-        const gridItem = document.createElement("div");
-        gridItem.classList.add("grids");
-        container.appendChild(gridItem);
+// function that changes the grid size
+function changeGrid(gridSize) {
+    const totalCells = gridSize * gridSize; // total number of small sq. that form the grid str.
+    const cellSize =  Math.floor(500/gridSize);    // size of each small squares
+    // start from zero and run till "i" is greater than "totalCells". Also increment "i" each time
+    for (let i = 0; i < totalCells; i++) {    
+        const cell = document.createElement("div");   // create div element
+        cell.classList.add("grids");    // give them class = grids
+        cell.style.width = `${cellSize}px`;    // give width for "grids", uses inline styling
+        cell.style.height = `${cellSize}px`;    // give height for "grids", uses inline styling
+        cell.addEventListener("mouseover", (e) => {  // listen everytime mouse hovers over grids
+            e.target.style.backgroundColor = getRandomColor();    // set random bg color via fn
+        });
+        container.appendChild(cell);    // add div sq boxes inside "container" that makes grid str.
     };
 };
 
+// function to generate random color
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";    // variable with string, hex-code (0-9) (A-F) eg: #65G8H4
+    let color ="#";    // initial value for hex color code start with "#" symbol
+    for (let i = 0; i < 6; i++) {    // for loop that iterate 6 times; hex-code has 6 letters/num
+        // Math.random gives value from 0-0.9, multiplied by 16 as the hex-code has 16 strings total, Math.floor rounds up decimal to whole num; the final number shows the index from letters. This runs 6 times to choose random 6 letters that form a random color
+        color += letters[Math.floor(Math.random() *16)];    
+    };
+    return color;    // returns random color generated above
+};
 
-// const gridSize = 16;
-// // Create square grids based on grid size
-// for (let i = 0; i < (gridSize * gridSize); i++) {
-//     const gridItem = document.createElement("div");
-//     gridItem.classList.add("grids");
-//     container.appendChild(gridItem);
-// };
-
-// Reference to the above created grids as nodelist
-const grids = document.querySelectorAll(".grids");
-
-// Upon mouse hover, each grid changes its bg color
-grids.forEach(grid => {
-    grid.addEventListener("mouseover", () => {
-        grid.style.backgroundColor = "blue";
-    });
-});
 
