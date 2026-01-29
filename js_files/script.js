@@ -1,7 +1,7 @@
 const container = document.querySelector("#container"); // Reference to container div
 
 const gridBtn = document.createElement("button");       // create button element
-gridBtn.textContent = "Change Grid";                    // add text
+gridBtn.textContent = "Choose Grid Size";                    // add text
 gridBtn.classList.add("btn");                           // add class
 container.parentNode.insertBefore(gridBtn, container);  // insert gridBtn before container
 
