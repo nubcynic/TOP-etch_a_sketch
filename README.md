@@ -48,6 +48,7 @@ Images and Links 🔗
 Future Scope 📝
 - A color slider at the side so that the user chooses the color they wish to fill on the square boxes
 - A brightness slider so that the user can choose their own opacity level for the color they choose
+- A reset feature that only cleans up the canvas without changing the grid sizing
 
 Acknowledgement 🐵
 - The Odin Project for the curriculum
