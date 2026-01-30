@@ -2,14 +2,14 @@
 This is the documentation for The Odin Project's Foundation Course project named Etch A Sketch. This ReadMe file provides detailed information about the project and its features.
 
 ## Table Of Content 📖
-[Introduction](##Introduction)
-[Features](##Features)
-[Project Guidelines](##Project-Guidelines)
-[Technology Used](##Technology-Used)
-[Images and Links](##Images-and-Links)
-[Future Scope](##Future-Scope)
-[Acknowledgement](##Acknowledgement)
-[Conclusion](##Conclusion)
+- [Introduction](##Introduction)
+- [Features](##Features)
+- [Project Guidelines](##Project-Guidelines)
+- [Technology Used](##Technology-Used)
+- [Images and Links](##Images-and-Links)
+- [Future Scope](##Future-Scope)
+- [Acknowledgement](##Acknowledgement)
+- [Conclusion](##Conclusion)
 
 ## Introduction 📝
 This project (Etch a Sketch) aims to test our DOM manipulation skills by building somewhat of a sketch pad in the browser. It is a a part of The Odin Project's Foundational Course curriculum.
